@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vansh - Full Stack Developer & UI/UX Designer</title>
+    <meta name="description" content="Full Stack Developer & UI/UX Designer crafting digital experiences that blend creativity with functionality. Explore my portfolio of modern web applications and get in touch for collaboration opportunities.">
+    <meta property="og:title" content="Vansh - Full Stack Developer & UI/UX Designer">
+    <meta property="og:description" content="Full Stack Developer & UI/UX Designer crafting digital experiences that blend creativity with functionality.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        :root {
+            --background: 222 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --muted: 217 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --popover: 222 84% 4.9%;
+            --popover-foreground: 210 40% 98%;
+            --card: 222 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --border: 217 32.6% 17.5%;
+            --input: 217 32.6% 17.5%;
+            --primary: 217 91% 60%;
+            --primary-foreground: 222 84% 4.9%;
+            --secondary: 217 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --accent: 217 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 210 40% 98%;
+            --ring: 217 91% 60%;
+            --radius: 0.5rem;
+            
+            --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+            --glass-bg: rgba(10, 11, 15, 0.8);
+            --glass-border: rgba(148, 163, 184, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-morphism {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .project-card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+
+        .btn-primary:hover {
+            background-color: hsl(var(--primary) / 0.9);
+            transform: scale(1.05);
+        }
+
+        .btn-outline {
+            border: 1px solid hsl(var(--primary));
+            color: hsl(var(--primary));
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            transform: scale(1.05);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: hsl(var(--foreground));
+        }
+
+        .btn-ghost:hover {
+            background-color: hsl(var(--accent));
+        }
+
+        .card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            padding: 1.5rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: calc(var(--radius) - 2px);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .animate-bounce-slow {
+            animation: bounce 2s infinite;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+            40%, 43% { transform: translateY(-8px); }
+            70% { transform: translateY(-4px); }
+            90% { transform: translateY(-2px); }
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: hsl(var(--primary));
+            box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+        }
+
+        .text-muted {
+            color: hsl(var(--muted-foreground));
+        }
+
+        .bg-muted {
+            background-color: hsl(var(--muted));
+        }
+
+        .border-border {
+            border-color: hsl(var(--border));
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-morphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold gradient-text">V</span>
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-blue-400 transition-colors duration-200">Home</a>
+                        <a href="#about" class="hover:text-blue-400 transition-colors duration-200">About</a>
+                        <a href="#projects" class="hover:text-blue-400 transition-colors duration-200">Projects</a>
+                        <a href="#contact" class="hover:text-blue-400 transition-colors duration-200">Contact</a>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="btn btn-ghost p-2">
+                        <i data-lucide="moon" class="w-5 h-5"></i>
+                    </button>
+                    <button id="mobile-menu-toggle" class="md:hidden btn btn-ghost p-2">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed inset-0 top-16 bg-black bg-opacity-90 backdrop-blur-sm">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#home" class="block text-lg hover:text-blue-400 transition-colors duration-200">Home</a>
+                <a href="#about" class="block text-lg hover:text-blue-400 transition-colors duration-200">About</a>
+                <a href="#projects" class="block text-lg hover:text-blue-400 transition-colors duration-200">Projects</a>
+                <a href="#contact" class="block text-lg hover:text-blue-400 transition-colors duration-200">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="animate-fade-in">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+                    Hi, I'm <span class="gradient-text">Vansh</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-muted mb-8 max-w-3xl mx-auto">
+                    Full Stack Developer & UI/UX Designer crafting digital experiences that blend creativity with functionality
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#projects" class="btn btn-primary px-8 py-3 text-lg">View My Work</a>
+                    <a href="#contact" class="btn btn-outline px-8 py-3 text-lg">Get In Touch</a>
+                </div>
+
+                <div class="mt-12 animate-bounce-slow">
+                    <a href="#about" class="text-muted hover:text-blue-400 transition-colors duration-200">
+                        <i data-lucide="chevron-down" class="w-8 h-8 mx-auto"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Connections Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    Connect With <span class="gradient-text">Me</span>
+                </h2>
+                <p class="text-lg text-muted max-w-2xl mx-auto mb-12">
+                    Follow my journey and connect with me on various social platforms
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://www.instagram.com/notreal_vansh?igsh=cjVxMjk3Nm1kZDMx" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="flex items-center space-x-3 p-4 rounded-lg border border-pink-500/20 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all duration-200 group">
+                        <svg class="w-6 h-6 text-pink-500" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        <span class="font-medium group-hover:text-pink-500 transition-colors">Instagram</span>
+                    </a>
+
+                    <a href="https://youtube.com/@vanshxd69?si=iRdL2UNfFO1vgBgZ" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="flex items-center space-x-3 p-4 rounded-lg border border-red-500/20 hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-200 group">
+                        <svg class="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        <span class="font-medium group-hover:text-red-500 transition-colors">YouTube</span>
+                    </a>
+
+                    <a href="https://open.spotify.com/user/31tpetur2gqcp65guzunwynjjcaa?si=tN8F8BCMQ6acF1rAmLpc8w" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="flex items-center space-x-3 p-4 rounded-lg border border-green-500/20 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-200 group">
+                        <svg class="w-6 h-6 text-green-500" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                        <span class="font-medium group-hover:text-green-500 transition-colors">Spotify</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-muted/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    About <span class="gradient-text">Me</span>
+                </h2>
+                <p class="text-lg text-muted max-w-2xl mx-auto">
+                    Passionate about creating digital experiences that make a difference
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-6">My Skills & Expertise</h3>
+                    <div class="grid gap-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-indigo-500/10 rounded-lg flex items-center justify-center">
+                                <i class="fab fa-discord text-indigo-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Discord.js & Bot Development</h4>
+                                <p class="text-muted">Creating advanced Discord bots with comprehensive features</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center">
+                                <i class="fab fa-node-js text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Node.js & Express</h4>
+                                <p class="text-muted">Building scalable backend applications and APIs</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-red-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Antinuke & Security Systems</h4>
+                                <p class="text-muted">Developing robust security measures for Discord servers</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-microphone text-purple-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">RTC & Voice Features</h4>
+                                <p class="text-muted">Implementing real-time communication features</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-on-scroll">
+                    <div class="card">
+                        <h3 class="text-xl font-bold mb-4">Quick Facts</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-muted">Location</span>
+                                <span>Uttarakhand, India</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Experience</span>
+                                <span>2+ Years</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Specialty</span>
+                                <span>Discord Bot Development</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted">Email</span>
+                                <span>notrealvansh@gmail.com</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <a href="#" class="btn btn-primary w-full">
+                                <i data-lucide="download" class="w-4 h-4 mr-2"></i>
+                                Download Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    Featured <span class="gradient-text">Projects</span>
+                </h2>
+                <p class="text-lg text-muted max-w-2xl mx-auto">
+                    Here are some of my recent projects that showcase my skills in full-stack development,
+                    UI/UX design, and problem-solving.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div class="project-card overflow-hidden animate-on-scroll shadow-xl hover:shadow-2xl">
+                    <img src="https://cdn.discordapp.com/avatars/1324050005467730091/21e8412082ea668bd2d5b49e2619fb64.png?size=1024" 
+                         alt="Cryptora Discord Bot" 
+                         class="w-full h-48 object-cover">
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Cryptora Discord Bot</h3>
+                        <p class="text-muted mb-4">
+                            A Discord multipurpose bot created by NPG with advanced antinuke system that I admin and maintain, 
+                            providing comprehensive server protection, moderation features, cryptocurrency tracking, price alerts, 
+                            portfolio management, and real-time market data for Discord communities.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge bg-indigo-100 text-indigo-800">Discord.js</span>
+                            <span class="badge bg-green-100 text-green-800">Node.js</span>
+                            <span class="badge bg-yellow-100 text-yellow-800">JavaScript</span>
+                            <span class="badge bg-purple-100 text-purple-800">API Integration</span>
+                        </div>
+
+                        <div class="flex space-x-4">
+                            <a href="https://discord.com/oauth2/authorize?client_id=1324050005467730091&permissions=8&integration_type=0&scope=applications.commands+bot" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="btn btn-primary flex items-center space-x-2">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                                <span>Add Bot</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-muted/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    Let's Work <span class="gradient-text">Together</span>
+                </h2>
+                <p class="text-lg text-muted max-w-2xl mx-auto">
+                    I'm always interested in new opportunities and exciting projects.
+                    Let's discuss how we can bring your ideas to life.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-6">Get In Touch</h3>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                                <i data-lucide="mail" class="w-5 h-5 text-blue-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">notrealvansh@gmail.com</p>
+                                <p class="text-muted">Send me an email</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-blue-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Uttarakhand, India</p>
+                                <p class="text-muted">Based in Uttarakhand</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h4 class="text-lg font-semibold mb-4">Connect With Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="btn btn-outline p-2">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline p-2">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline p-2">
+                                <i data-lucide="twitter" class="w-5 h-5"></i>
+                            </a>
+                            <a href="mailto:notrealvansh@gmail.com" class="btn btn-outline p-2">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-on-scroll">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium mb-2">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium mb-2">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-input" required>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" class="form-input" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-full py-3">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Vansh. All rights reserved.</p>
+                <p class="mt-2">Built with ❤️ using modern web technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scrolling for navigation links
+        document.addEventListener('click', function(e) {
+            if (e.target.href && e.target.href.includes('#')) {
+                e.preventDefault();
+                const id = e.target.href.split('#')[1];
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+            const icon = mobileMenuToggle.querySelector('[data-lucide]');
+            const isOpen = mobileMenu.classList.contains('open');
+            icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+            lucide.createIcons();
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                mobileMenu.classList.remove('open');
+                const icon = mobileMenuToggle.querySelector('[data-lucide]');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form submission feedback
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Theme toggle (currently just changes icon - you can extend this for full theme switching)
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            const icon = this.querySelector('[data-lucide]');
+            const currentIcon = icon.getAttribute('data-lucide');
+            const newIcon = currentIcon === 'moon' ? 'sun' : 'moon';
+            icon.setAttribute('data-lucide', newIcon);
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
