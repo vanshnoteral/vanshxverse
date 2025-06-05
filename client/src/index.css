@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222 84% 4.9%; /* #0a0b0f */
+  --foreground: 210 40% 98%; /* #f8fafc */
+  --muted: 217 32.6% 17.5%; /* #1e293b */
+  --muted-foreground: 215 20.2% 65.1%; /* #94a3b8 */
+  --popover: 222 84% 4.9%; /* #0a0b0f */
+  --popover-foreground: 210 40% 98%; /* #f8fafc */
+  --card: 222 84% 4.9%; /* #0a0b0f */
+  --card-foreground: 210 40% 98%; /* #f8fafc */
+  --border: 217 32.6% 17.5%; /* #1e293b */
+  --input: 217 32.6% 17.5%; /* #1e293b */
+  --primary: 217 91% 60%; /* #3b82f6 */
+  --primary-foreground: 222 84% 4.9%; /* #0a0b0f */
+  --secondary: 217 32.6% 17.5%; /* #1e293b */
+  --secondary-foreground: 210 40% 98%; /* #f8fafc */
+  --accent: 217 32.6% 17.5%; /* #1e293b */
+  --accent-foreground: 210 40% 98%; /* #f8fafc */
+  --destructive: 0 62.8% 30.6%; /* #991b1b */
+  --destructive-foreground: 210 40% 98%; /* #f8fafc */
+  --ring: 217 91% 60%; /* #3b82f6 */
+  --radius: 0.5rem;
+  
+  /* Custom variables for the portfolio */
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+  --glass-bg: rgba(10, 11, 15, 0.8);
+  --glass-border: rgba(148, 163, 184, 0.1);
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .aesthetic-text {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 10px rgba(59, 130, 246, 0.4);
+    font-style: italic;
+  }
+  
+  .glass-morphism {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+  }
+  
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+}
+
+@layer utilities {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .project-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .project-card:hover {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
